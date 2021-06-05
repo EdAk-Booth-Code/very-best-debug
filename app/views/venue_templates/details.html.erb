@@ -39,7 +39,7 @@
 
   <dt>Delete venue</dt>
   <dd>
-    <a href="/delete_venue/<% @the_venue.id %>">
+    <a href="/delete_venue/<%=@the_venue.id%>">
       Delete this venue
     </a>
   </dd>
@@ -54,22 +54,22 @@
     <th>Posted</th>
   </tr>
 
-  <% @the_venue.comments.each do |comment| %>
-  <tr>
-    <td>
-      <%= comment.commenter.username %>
-    </td>
-
-    <td>
-      <%= comment.body %>
-    </td>
-
-    <td>
-      <%= comment.created_at %>
-    </td>
-  </tr>
   
-  <% end %>
+  <% @the_venue.comments.each do |comment| %>
+    <tr>
+      <td>
+        <%= User.where({ :id => comment.author_id }).at(0).username %>
+      </td>
+
+      <td>
+        <%= comment.body %>
+      </td>
+
+      <td>
+        <%= comment.created_at %>
+      </td>
+    </tr>
+  <% end %> 
 </table>
 
 <h3>Add a new comment</h3>

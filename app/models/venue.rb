@@ -17,4 +17,10 @@ class Venue < ApplicationRecord
     matching_comments = Comment.where({ :venue_id => my_id })
     return matching_comments
   end
+
+  def poster
+    my_id = self.id
+    matching_poster = User.where({ :id => my_id})
+    return matching_poster
+  end
 end
